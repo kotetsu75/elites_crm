@@ -1,4 +1,6 @@
 class CustomersController < ApplicationController
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+
   def index
     @q = Customer.search(params[:q])
     @customers = @q.result.page(params[:page])
